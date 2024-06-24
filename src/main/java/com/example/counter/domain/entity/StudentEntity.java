@@ -41,4 +41,9 @@ public class StudentEntity {
     /*
     벌점
      */
+
+    public void resetMinusPoint(){
+        this.minusPoint = 0;
+    }
+
 }

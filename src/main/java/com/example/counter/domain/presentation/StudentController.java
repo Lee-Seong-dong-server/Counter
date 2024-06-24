@@ -4,9 +4,8 @@ package com.example.counter.domain.presentation;
 import com.example.counter.domain.repository.Dto.StudentDto;
 import com.example.counter.domain.service.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.coyote.BadRequestException;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -18,4 +17,10 @@ public class StudentController {
     public Long register(StudentDto studentDto){
         return studentService.register(studentDto);
     }
+
+    @DeleteMapping("")
+    public void deleteStudent(@RequestParam String studentId) throws BadRequestException {
+        studentService.deleteUser(studentId);
+    }
+
 }
