@@ -12,9 +12,14 @@ import org.springframework.stereotype.Service;
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 
-    @Override
-    public Long register(StudentDto studentDto) {
-        return 1L;
+    public StudentEntity createStudent(String studentId, String name) {
+        StudentEntity student = StudentEntity.builder()
+                .studentId(studentId)
+                .name(name)
+                .bonusPoint(0)
+                .minusPoint(0)
+                .build();
+        return studentRepository.save(student);
     }
 
     @Override
