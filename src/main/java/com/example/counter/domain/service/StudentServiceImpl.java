@@ -1,7 +1,6 @@
 package com.example.counter.domain.service;
 
 import com.example.counter.domain.entity.StudentEntity;
-import com.example.counter.domain.repository.Dto.StudentDto;
 import com.example.counter.domain.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;

@@ -2,15 +2,11 @@ package com.example.counter.domain.presentation;
 
 
 import com.example.counter.domain.entity.StudentEntity;
-import com.example.counter.domain.repository.Dto.StudentDto;
-import com.example.counter.domain.service.StudentService;
 import com.example.counter.domain.service.StudentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
