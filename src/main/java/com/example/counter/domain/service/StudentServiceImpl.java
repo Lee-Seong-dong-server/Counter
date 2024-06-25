@@ -16,6 +16,10 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 
+    public List<StudentEntity> getAllStudents() {
+        return studentRepository.findAll();
+    }
+
     public Optional<StudentEntity> getStudentById(String userId) {
         return studentRepository.findByStudentId(userId);
     }

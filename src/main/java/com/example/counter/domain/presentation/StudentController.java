@@ -8,11 +8,18 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/student")
 public class StudentController {
     private final StudentServiceImpl studentService;
+
+    @GetMapping
+    public List<StudentEntity> getAllStudents() {
+        return studentService.getAllStudents();
+    }
 
     @GetMapping("/{studentId}")
     public ResponseEntity<StudentEntity> getStudent(@PathVariable String studentId) {
