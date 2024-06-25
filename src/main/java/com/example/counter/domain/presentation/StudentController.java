@@ -30,6 +30,34 @@ public class StudentController {
         return studentService.createStudent(request.getStudentId(), request.getName());
     }
 
+    @PatchMapping("/{id}/addBonusPoint")
+    public ResponseEntity<StudentEntity> addBonusPoint(@PathVariable long id, @RequestParam int points) {
+        return studentService.addBonusPoint(id, points)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PatchMapping("/{id}/addMinusPoint")
+    public ResponseEntity<StudentEntity> addMinusPoint(@PathVariable long id, @RequestParam int points) {
+        return studentService.addMinusPoint(id, points)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PatchMapping("/{id}/subtractBonusPoint")
+    public ResponseEntity<StudentEntity> subtractBonusPoint(@PathVariable long id, @RequestParam int points) {
+        return studentService.subtractBonusPoint(id, points)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PatchMapping("/{id}/subtractMinusPoint")
+    public ResponseEntity<StudentEntity> subtractMinusPoint(@PathVariable long id, @RequestParam int points) {
+        return studentService.subtractMinusPoint(id, points)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("")
     public void deleteStudent(@RequestParam String studentId) throws BadRequestException {
         studentService.deleteUser(studentId);

@@ -9,6 +9,7 @@ import lombok.*;
 @Table(name = "student")
 @Builder
 @Getter
+@Setter
 @ToString
 public class StudentEntity {
     @Id
@@ -30,12 +31,14 @@ public class StudentEntity {
     학생 이름
      */
 
+    @Setter
     @Column(nullable = false)
     private int bonusPoint = 0;
     /*
     상점
      */
 
+    @Setter
     @Column(nullable = false)
     private int minusPoint = 0;
     /*

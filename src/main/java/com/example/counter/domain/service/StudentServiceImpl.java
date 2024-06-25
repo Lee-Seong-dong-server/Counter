@@ -28,6 +28,34 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student);
     }
 
+    public Optional<StudentEntity> addBonusPoint(long id, int points) {
+        return studentRepository.findById(id).map(student -> {
+            student.setBonusPoint(student.getBonusPoint() + points);
+            return studentRepository.save(student);
+        });
+    }
+
+    public Optional<StudentEntity> addMinusPoint(long id, int points) {
+        return studentRepository.findById(id).map(student -> {
+            student.setMinusPoint(student.getMinusPoint() + points);
+            return studentRepository.save(student);
+        });
+    }
+
+    public Optional<StudentEntity> subtractBonusPoint(long id, int points) {
+        return studentRepository.findById(id).map(student -> {
+            student.setBonusPoint(student.getBonusPoint() - points);
+            return studentRepository.save(student);
+        });
+    }
+
+    public Optional<StudentEntity> subtractMinusPoint(long id, int points) {
+        return studentRepository.findById(id).map(student -> {
+            student.setMinusPoint(student.getMinusPoint() - points);
+            return studentRepository.save(student);
+        });
+    }
+
     @Override
     public void reset(Long id) {
         StudentEntity entity = studentRepository.findById(id).orElseThrow(()-> {
