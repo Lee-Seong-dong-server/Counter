@@ -16,16 +16,10 @@ import java.util.List;
 @ToString
 public class StudentEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    /*
-    기본 아이디 (pk)
-     */
-
-    @Column(nullable = false)
+    @Column(name = "student_id", nullable = false, unique = true)
     private String studentId;
     /*
-    학생 아이디 (2411)
+    학생 아이디 (2411, pk)
      */
 
     @Column(name = "student_name", nullable = false)

@@ -2,15 +2,11 @@ package com.example.counter.domain.presentation;
 
 
 import com.example.counter.domain.entity.StudentEntity;
-import com.example.counter.domain.repository.Dto.StudentDto;
-import com.example.counter.domain.service.StudentService;
 import com.example.counter.domain.service.StudentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -18,9 +14,9 @@ import java.util.Optional;
 public class StudentController {
     private final StudentServiceImpl studentService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<StudentEntity> getStudent(@PathVariable long id) {
-        return studentService.getStudentById(id)
+    @GetMapping("/{studentId}")
+    public ResponseEntity<StudentEntity> getStudent(@PathVariable String studentId) {
+        return studentService.getStudentById(studentId)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -30,30 +26,30 @@ public class StudentController {
         return studentService.createStudent(request.getStudentId(), request.getName());
     }
 
-    @PatchMapping("/{id}/addBonusPoint")
-    public ResponseEntity<StudentEntity> addBonusPoint(@PathVariable long id, @RequestParam int points, @RequestBody ReasonRequest reason) {
-        return studentService.addBonusPoint(id, points, reason.getReason())
+    @PatchMapping("/{studentId}/addBonusPoint")
+    public ResponseEntity<StudentEntity> addBonusPoint(@PathVariable long studentId, @RequestParam int points, @RequestBody ReasonRequest reason) {
+        return studentService.addBonusPoint(studentId, points, reason.getReason())
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PatchMapping("/{id}/addMinusPoint")
-    public ResponseEntity<StudentEntity> addMinusPoint(@PathVariable long id, @RequestParam int points, @RequestBody ReasonRequest reason) {
-        return studentService.addMinusPoint(id, points, reason.getReason())
+    @PatchMapping("/{studentId}/addMinusPoint")
+    public ResponseEntity<StudentEntity> addMinusPoint(@PathVariable long studentId, @RequestParam int points, @RequestBody ReasonRequest reason) {
+        return studentService.addMinusPoint(studentId, points, reason.getReason())
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PatchMapping("/{id}/subtractBonusPoint")
-    public ResponseEntity<StudentEntity> subtractBonusPoint(@PathVariable long id, @RequestParam int points) {
-        return studentService.subtractBonusPoint(id, points)
+    @PatchMapping("/{studentId}/subtractBonusPoint")
+    public ResponseEntity<StudentEntity> subtractBonusPoint(@PathVariable String studentId, @RequestParam int points) {
+        return studentService.subtractBonusPoint(studentId, points)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PatchMapping("/{id}/subtractMinusPoint")
-    public ResponseEntity<StudentEntity> subtractMinusPoint(@PathVariable long id, @RequestParam int points) {
-        return studentService.subtractMinusPoint(id, points)
+    @PatchMapping("/{studentId}/subtractMinusPoint")
+    public ResponseEntity<StudentEntity> subtractMinusPoint(@PathVariable String studentId, @RequestParam int points) {
+        return studentService.subtractMinusPoint(studentId, points)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -61,5 +57,11 @@ public class StudentController {
     @DeleteMapping("")
     public void deleteStudent(@RequestParam String studentId) throws BadRequestException {
         studentService.deleteUser(studentId);
+    }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<String> deleteAllStudents() {
+        studentService.deleteAllStudents();
+        return ResponseEntity.ok("전체 학생 제거 완료");
     }
 }
