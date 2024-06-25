@@ -21,6 +21,11 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
+    @GetMapping("/highBonusPoint")
+    public List<StudentEntity> getHighBonusPointStudents() {
+        return studentService.getHighBonusPointStudents();
+    }
+
     @GetMapping("/{studentId}")
     public ResponseEntity<StudentEntity> getStudent(@PathVariable String studentId) {
         return studentService.getStudentById(studentId)

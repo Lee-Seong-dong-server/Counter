@@ -5,6 +5,7 @@ import com.example.counter.domain.repository.StudentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
+import org.apache.coyote.Constants;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,6 +19,12 @@ public class StudentServiceImpl implements StudentService {
 
     public List<StudentEntity> getAllStudents() {
         return studentRepository.findAll();
+    }
+
+    public List<StudentEntity> getHighBonusPointStudents() {
+        List<StudentEntity> students = new ArrayList<>(studentRepository.findAll());
+        students.sort((a, b) -> b.getBonusPoint() - a.getBonusPoint());
+        return students;
     }
 
     public Optional<StudentEntity> getStudentById(String userId) {
