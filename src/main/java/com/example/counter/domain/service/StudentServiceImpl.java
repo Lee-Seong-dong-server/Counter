@@ -7,10 +7,16 @@ import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
+
+    public Optional<StudentEntity> getStudentById(long id) {
+        return studentRepository.findById(id);
+    }
 
     public StudentEntity createStudent(String studentId, String name) {
         StudentEntity student = StudentEntity.builder()
