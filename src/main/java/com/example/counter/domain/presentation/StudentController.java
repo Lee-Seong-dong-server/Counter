@@ -31,15 +31,15 @@ public class StudentController {
     }
 
     @PatchMapping("/{id}/addBonusPoint")
-    public ResponseEntity<StudentEntity> addBonusPoint(@PathVariable long id, @RequestParam int points) {
-        return studentService.addBonusPoint(id, points)
+    public ResponseEntity<StudentEntity> addBonusPoint(@PathVariable long id, @RequestParam int points, @RequestBody ReasonRequest reason) {
+        return studentService.addBonusPoint(id, points, reason.getReason())
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PatchMapping("/{id}/addMinusPoint")
-    public ResponseEntity<StudentEntity> addMinusPoint(@PathVariable long id, @RequestParam int points) {
-        return studentService.addMinusPoint(id, points)
+    public ResponseEntity<StudentEntity> addMinusPoint(@PathVariable long id, @RequestParam int points, @RequestBody ReasonRequest reason) {
+        return studentService.addMinusPoint(id, points, reason.getReason())
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

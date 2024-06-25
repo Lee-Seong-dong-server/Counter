@@ -3,6 +3,9 @@ package com.example.counter.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collections;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -29,6 +32,13 @@ public class StudentEntity {
     private String name;
     /*
     학생 이름
+     */
+
+    @Setter
+    @Column(columnDefinition = "TEXT")
+    private String pointReasons = "";
+    /*
+    포인트 이유들
      */
 
     @Setter

@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,15 +30,30 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student);
     }
 
-    public Optional<StudentEntity> addBonusPoint(long id, int points) {
+    public Optional<StudentEntity> addBonusPoint(long id, int points, String reason) {
         return studentRepository.findById(id).map(student -> {
+            String pointReasons = student.getPointReasons();
+            // pointReasons가 비어있지 않으면 세미콜론으로 구분해서 추가
+            if (pointReasons.isEmpty()) {
+                student.setPointReasons("[상점]"+reason);
+            } else {
+                student.setPointReasons(student.getPointReasons() + ", [상점]" + reason);
+            }
             student.setBonusPoint(student.getBonusPoint() + points);
+            // 저장 후 반환
             return studentRepository.save(student);
         });
     }
 
-    public Optional<StudentEntity> addMinusPoint(long id, int points) {
+    public Optional<StudentEntity> addMinusPoint(long id, int points, String reason) {
         return studentRepository.findById(id).map(student -> {
+            String pointReasons = student.getPointReasons();
+            if (pointReasons.isEmpty()) {
+                student.setPointReasons("[벌점]"+reason);
+            } else {
+                student.setPointReasons(student.getPointReasons() + ", [벌점]" + reason);
+            }
+
             student.setMinusPoint(student.getMinusPoint() + points);
             return studentRepository.save(student);
         });
