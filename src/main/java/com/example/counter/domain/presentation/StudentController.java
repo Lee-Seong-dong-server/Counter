@@ -58,4 +58,10 @@ public class StudentController {
     public void deleteStudent(@RequestParam String studentId) throws BadRequestException {
         studentService.deleteUser(studentId);
     }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<String> deleteAllStudents() {
+        studentService.deleteAllStudents();
+        return ResponseEntity.ok("전체 학생 제거 완료");
+    }
 }

@@ -2,6 +2,7 @@ package com.example.counter.domain.service;
 
 import com.example.counter.domain.entity.StudentEntity;
 import com.example.counter.domain.repository.StudentRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
@@ -72,4 +73,8 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.deleteByStudentId(studentId);
     }
 
+    @Transactional
+    public void deleteAllStudents() {
+        studentRepository.deleteAll();
+    }
 }
