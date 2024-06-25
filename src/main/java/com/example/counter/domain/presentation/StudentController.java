@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
     private final StudentServiceImpl studentService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<StudentEntity> getStudent(@PathVariable long id) {
-        return studentService.getStudentById(id)
+    @GetMapping("/{studentId}")
+    public ResponseEntity<StudentEntity> getStudent(@PathVariable String studentId) {
+        return studentService.getStudentById(studentId)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -26,30 +26,30 @@ public class StudentController {
         return studentService.createStudent(request.getStudentId(), request.getName());
     }
 
-    @PatchMapping("/{id}/addBonusPoint")
-    public ResponseEntity<StudentEntity> addBonusPoint(@PathVariable long id, @RequestParam int points) {
-        return studentService.addBonusPoint(id, points)
+    @PatchMapping("/{studentId}/addBonusPoint")
+    public ResponseEntity<StudentEntity> addBonusPoint(@PathVariable String studentId, @RequestParam int points) {
+        return studentService.addBonusPoint(studentId, points)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PatchMapping("/{id}/addMinusPoint")
-    public ResponseEntity<StudentEntity> addMinusPoint(@PathVariable long id, @RequestParam int points) {
-        return studentService.addMinusPoint(id, points)
+    @PatchMapping("/{studentId}/addMinusPoint")
+    public ResponseEntity<StudentEntity> addMinusPoint(@PathVariable String studentId, @RequestParam int points) {
+        return studentService.addMinusPoint(studentId, points)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PatchMapping("/{id}/subtractBonusPoint")
-    public ResponseEntity<StudentEntity> subtractBonusPoint(@PathVariable long id, @RequestParam int points) {
-        return studentService.subtractBonusPoint(id, points)
+    @PatchMapping("/{studentId}/subtractBonusPoint")
+    public ResponseEntity<StudentEntity> subtractBonusPoint(@PathVariable String studentId, @RequestParam int points) {
+        return studentService.subtractBonusPoint(studentId, points)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PatchMapping("/{id}/subtractMinusPoint")
-    public ResponseEntity<StudentEntity> subtractMinusPoint(@PathVariable long id, @RequestParam int points) {
-        return studentService.subtractMinusPoint(id, points)
+    @PatchMapping("/{studentId}/subtractMinusPoint")
+    public ResponseEntity<StudentEntity> subtractMinusPoint(@PathVariable String studentId, @RequestParam int points) {
+        return studentService.subtractMinusPoint(studentId, points)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface StudentRepository extends JpaRepository<StudentEntity,Long> {
     @Transactional(rollbackOn = Exception.class)
     void deleteByStudentId(String studentId);
-    Optional<StudentEntity>findByStudentId(String studentId);
+    Optional<StudentEntity> findByStudentId(String studentId);
 }

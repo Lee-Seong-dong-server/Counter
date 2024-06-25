@@ -13,8 +13,8 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 
-    public Optional<StudentEntity> getStudentById(long id) {
-        return studentRepository.findById(id);
+    public Optional<StudentEntity> getStudentById(String userId) {
+        return studentRepository.findByStudentId(userId);
     }
 
     public StudentEntity createStudent(String studentId, String name) {
@@ -27,29 +27,29 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student);
     }
 
-    public Optional<StudentEntity> addBonusPoint(long id, int points) {
-        return studentRepository.findById(id).map(student -> {
+    public Optional<StudentEntity> addBonusPoint(String studentId, int points) {
+        return studentRepository.findByStudentId(studentId).map(student -> {
             student.setBonusPoint(student.getBonusPoint() + points);
             return studentRepository.save(student);
         });
     }
 
-    public Optional<StudentEntity> addMinusPoint(long id, int points) {
-        return studentRepository.findById(id).map(student -> {
+    public Optional<StudentEntity> addMinusPoint(String studentId, int points) {
+        return studentRepository.findByStudentId(studentId).map(student -> {
             student.setMinusPoint(student.getMinusPoint() + points);
             return studentRepository.save(student);
         });
     }
 
-    public Optional<StudentEntity> subtractBonusPoint(long id, int points) {
-        return studentRepository.findById(id).map(student -> {
+    public Optional<StudentEntity> subtractBonusPoint(String studentId, int points) {
+        return studentRepository.findByStudentId(studentId).map(student -> {
             student.setBonusPoint(student.getBonusPoint() - points);
             return studentRepository.save(student);
         });
     }
 
-    public Optional<StudentEntity> subtractMinusPoint(long id, int points) {
-        return studentRepository.findById(id).map(student -> {
+    public Optional<StudentEntity> subtractMinusPoint(String studentId, int points) {
+        return studentRepository.findByStudentId(studentId).map(student -> {
             student.setMinusPoint(student.getMinusPoint() - points);
             return studentRepository.save(student);
         });
