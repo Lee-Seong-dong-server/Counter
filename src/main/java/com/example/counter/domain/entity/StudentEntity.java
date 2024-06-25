@@ -3,9 +3,6 @@ package com.example.counter.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Collections;
-import java.util.List;
-
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -30,21 +27,21 @@ public class StudentEntity {
 
     @Setter
     @Column(columnDefinition = "TEXT")
-    private String pointReasons = "";
+    private String pointReasons;
     /*
     포인트 이유들
      */
 
     @Setter
     @Column(nullable = false)
-    private int bonusPoint = 0;
+    private int bonusPoint;
     /*
     상점
      */
 
     @Setter
     @Column(nullable = false)
-    private int minusPoint = 0;
+    private int minusPoint;
     /*
     벌점
      */
