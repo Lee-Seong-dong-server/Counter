@@ -54,7 +54,7 @@ public class StudentController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/deleteUser")
     public void deleteStudent(@RequestParam String studentId) throws BadRequestException {
         studentService.deleteUser(studentId);
     }
