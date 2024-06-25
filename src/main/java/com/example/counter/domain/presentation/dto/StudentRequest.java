@@ -1,11 +1,11 @@
-package com.example.counter.domain.presentation;
+package com.example.counter.domain.presentation.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-class StudentRequest {
+public class StudentRequest {
     // getters and setters
     private String studentId;
     private String name;

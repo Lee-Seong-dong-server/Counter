@@ -1,7 +1,8 @@
-package com.example.counter.domain.presentation;
-
+package com.example.counter.domain.presentation.controller;
 
 import com.example.counter.domain.entity.StudentEntity;
+import com.example.counter.domain.presentation.dto.ReasonRequest;
+import com.example.counter.domain.presentation.dto.StudentRequest;
 import com.example.counter.domain.service.StudentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
@@ -64,16 +65,20 @@ public class StudentController {
         return studentService.subtractMinusPoint(studentId, points)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
-    }
+    } // 이것도 생각해보세요
 
     @DeleteMapping("")
-    public void deleteStudent(@RequestParam String studentId) throws BadRequestException {
-        studentService.deleteUser(studentId);
+    public void deleteStudent(@RequestParam String studentId){
+        try {
+            studentService.deleteUser(studentId);
+        } catch (BadRequestException e) {
+            throw new RuntimeException(e);
+        } // 이런 예외처리는 service에서 처리해오기
     }
 
     @DeleteMapping("/deleteAll")
     public ResponseEntity<String> deleteAllStudents() {
         studentService.deleteAllStudents();
-        return ResponseEntity.ok("전체 학생 제거 완료");
+        return ResponseEntity.ok("전체 학생 제거 완료"); // 이런식으로 controller 에는 그저 service 에 보내고, 성공했는지 알려주기만.
     }
 }
