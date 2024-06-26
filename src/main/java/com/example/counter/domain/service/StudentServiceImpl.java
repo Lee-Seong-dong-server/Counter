@@ -42,9 +42,8 @@ public class StudentServiceImpl implements StudentService {
 
     public Optional<StudentEntity> addBonusPoint(long studentId, int points, String reason) {
         return studentRepository.findById(studentId).map(student -> {
-            String pointReasons = student.getPointReasons();
             // pointReasons가 비어있지 않으면 세미콜론으로 구분해서 추가
-            if (pointReasons.isEmpty()) {
+            if (student.getPointReasons() == null) {
                 student.setPointReasons("[상점]"+reason);
             } else {
                 student.setPointReasons(student.getPointReasons() + ", [상점]" + reason);
@@ -57,8 +56,7 @@ public class StudentServiceImpl implements StudentService {
 
     public Optional<StudentEntity> addMinusPoint(long studentId, int points, String reason) {
         return studentRepository.findById(studentId).map(student -> {
-            String pointReasons = student.getPointReasons();
-            if (pointReasons.isEmpty()) {
+            if (student.getPointReasons() == null) {
                 student.setPointReasons("[벌점]"+reason);
             } else {
                 student.setPointReasons(student.getPointReasons() + ", [벌점]" + reason);
