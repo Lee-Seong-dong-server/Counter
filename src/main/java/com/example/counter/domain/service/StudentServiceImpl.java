@@ -16,6 +16,16 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 
+    public List<StudentEntity> getAllStudents() {
+        return studentRepository.findAll();
+    }
+
+    public List<StudentEntity> getHighBonusPointStudents() {
+        List<StudentEntity> students = new ArrayList<>(studentRepository.findAll());
+        students.sort((a, b) -> b.getBonusPoint() - a.getBonusPoint());
+        return students;
+    }
+
     public Optional<StudentEntity> getStudentById(String userId) {
         return studentRepository.findByStudentId(userId);
     }

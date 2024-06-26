@@ -1,10 +1,10 @@
-package com.example.counter.domain.presentation;
+package com.example.counter.domain.presentation.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-class ReasonRequest {
+public class ReasonRequest {
     private String reason;
 }
