@@ -1,5 +1,6 @@
 package com.example.counter.domain.entity;
 
+import com.example.counter.global.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class StudentEntity {
+public class StudentEntity extends BaseTimeEntity {
     @Id
     @Column(name = "student_id", nullable = false, unique = true)
     private String studentId;
