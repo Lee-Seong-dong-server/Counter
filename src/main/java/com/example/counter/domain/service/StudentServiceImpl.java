@@ -92,6 +92,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public void deleteUser(String studentId) throws BadRequestException {
         if(studentRepository.findByStudentId(studentId).isEmpty()){
             throw new BadRequestException();

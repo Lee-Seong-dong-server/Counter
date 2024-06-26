@@ -10,16 +10,13 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     properties:
       hibernate:
-<<<<<<< HEAD
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
     hibernate:
       ddl-auto: update
     show-sql: true
-=======
-        format_sql: true 
-        show_sql: true
->>>>>>> origin/main
+    format_sql: true
+    show_sql: true
 
 server:
   port: 8080

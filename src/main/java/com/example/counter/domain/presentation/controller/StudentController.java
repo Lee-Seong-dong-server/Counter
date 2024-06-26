@@ -67,19 +67,10 @@ public class StudentController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     } // 이것도 생각해보세요
 
-<<<<<<< HEAD:src/main/java/com/example/counter/domain/presentation/StudentController.java
-    @DeleteMapping("/deleteUser")
-    public void deleteStudent(@RequestParam String studentId) throws BadRequestException {
+    @DeleteMapping("/{studentId}/deleteUser")
+    public ResponseEntity<String> deleteStudent(@PathVariable String studentId) throws BadRequestException {
         studentService.deleteUser(studentId);
-=======
-    @DeleteMapping("")
-    public void deleteStudent(@RequestParam String studentId){
-        try {
-            studentService.deleteUser(studentId);
-        } catch (BadRequestException e) {
-            throw new RuntimeException(e);
-        } // 이런 예외처리는 service에서 처리해오기
->>>>>>> origin/main:src/main/java/com/example/counter/domain/presentation/controller/StudentController.java
+        return ResponseEntity.ok("학생 제거 완료");
     }
 
     @DeleteMapping("/deleteAll")
