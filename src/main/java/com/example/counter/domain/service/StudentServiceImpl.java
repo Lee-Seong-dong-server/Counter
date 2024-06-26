@@ -20,9 +20,9 @@ public class StudentServiceImpl implements StudentService { // StudentService �
         return studentRepository.findAll();
     }
 
-    public List<StudentEntity> getHighBonusPointStudents() { // 상점 오름차순으로 불러오기
+    public List<StudentEntity> getHighBonusPointStudents() { // 상점 내림차순으로 불러오기
         List<StudentEntity> students = new ArrayList<>(studentRepository.findAll()); // 전체 학생 리스트 생성
-        students.sort((a, b) -> b.getBonusPoint() - a.getBonusPoint()); // 두 객체를 비교해서 오름차순으로 만든다
+        students.sort((a, b) -> b.getBonusPoint() - a.getBonusPoint()); // 두 객체를 비교해서 내림차순으로 만든다
         return students;
     }
 
