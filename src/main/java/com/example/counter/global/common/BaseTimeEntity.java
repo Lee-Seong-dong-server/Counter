@@ -14,9 +14,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 @Getter
-@SuperBuilder
-@MappedSuperclass
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@SuperBuilder // 객체 생성 로직이 복잡한 경우, @Build 대신 사용
+@MappedSuperclass // 속성만 상속받고 싶은 경우 사용
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 보안상 좋다고 해서 씀
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseTimeEntity {
     @CreatedDate

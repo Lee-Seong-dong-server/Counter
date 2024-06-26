@@ -5,15 +5,15 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 보안상 좋다고 해서 씀
+@AllArgsConstructor // 생성자 자동 생성
 @Table(name = "student")
-@Builder
+@Builder // 생성자 오버로딩
 @Getter
 @Setter
 @ToString
 public class StudentEntity extends BaseTimeEntity {
-    @Id
+    @Id // primary key로 지정
     @Column(name = "student_id", nullable = false, unique = true)
     private String studentId;
     /*
