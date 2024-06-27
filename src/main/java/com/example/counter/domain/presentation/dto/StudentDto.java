@@ -1,6 +1,5 @@
 package com.example.counter.domain.presentation.dto;
 
-import jakarta.persistence.Column;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
